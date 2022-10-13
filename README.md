@@ -213,3 +213,80 @@ docker run -p 3000:3000 mydockerimage/docker-rails-app:latest
 - We also need to open that port using EXPOSE in case we are changing the container port.
 
 Now https://localhost:3000 is serving our rails application.
+
+
+## Docker images management locally
+
+Here is the complete [documentation to manage the docker images](https://docs.docker.com/engine/reference/commandline/image/). Here are some of the major commands we will use to manage the images
+
+### We can see the list of all docker images in our system by below command:
+
+```
+docker image ls
+```
+
+We can see a list like:
+| REPOSITORY                      | TAG     | IMAGE ID      | CREATED       | SIZE  |
+| :------------------------------ | :-------| :------------ | :------------ |:----- |
+| mydockerimage/docker-rails-app  |  latest | 0e4e616f7b52  | 1 minute ago  | 554 MB |
+
+
+### We can delete image:
+
+```
+docker image rm [OPTIONS] IMAGE [IMAGE...]
+```
+
+Options: `--force`, `-f`
+
+Here is an example to delete above image:
+
+```
+docker image rm -f mydockerimage/docker-rails-app:latest
+```
+
+### We can pull image:
+
+```
+docker image pull [OPTIONS] NAME[:TAG|@DIGEST]
+```
+
+Options: `--all-tags` , `-a`, `--platform`, `--quiet`, `-q`
+
+
+### Login docker account on terminal
+
+Use your dockerhub username and password to login on terminal
+
+```
+docker login
+```
+
+## Push docker image to Docker Hub
+
+Docker Hub repositories allow you share container images with your team, customers, or the Docker community at large.
+
+- Docker images are pushed to Docker Hub through the `docker push` command. 
+- A single Docker Hub repository can hold many Docker images
+- Here is the complete [Docker Hub documentation](https://docs.docker.com/docker-hub/repos/) related to create and manage reposetories
+
+### Pushing a Docker container image to Docker Hub
+
+To push an image to Docker Hub, 
+
+- You must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
+- You can add multiple images to a repository by adding a specific `:<tag>` to them (for example docs/base:testing). If it’s not specified, the tag defaults to latest.
+- Name your local images using one of these methods:
+
+  - When you build them, using `docker build -t <hub-user>/<repo-name>[:<tag>]`
+  - By re-tagging an existing local image `docker tag <existing-image> <hub-user>/<repo-name>[:<tag>]`
+  - By using `docker commit <existing-container> <hub-user>/<repo-name>[:<tag>]` to commit changes
+  - Now you can push this repository to the registry designated by its name or tag.
+
+- Now you can push this repository to the registry designated by its name or tag.
+  - `docker push <hub-user>/<repo-name>:<tag>`
+
+### For more uses please visit the [Docker main documentation](https://docs.docker.com/reference/)
+- [Commandline Image](https://docs.docker.com/engine/reference/commandline/image/).
+- [Commandline CLI](https://docs.docker.com/engine/reference/commandline/cli/)
+
