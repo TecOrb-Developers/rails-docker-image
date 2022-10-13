@@ -47,7 +47,7 @@ A Dockerfile is a text document that contains all the commands a user could call
 
 #### docker-rails-app/Dockerfile
 
-```http
+```
 # Here we add the the name of the stage ("base")
 FROM ruby:3.1.2-slim AS base
 
@@ -176,7 +176,9 @@ Below is the command to build the image:
 
 - **Dot (.)** is a required argument and indicates the path to the Dockerfile.
 
-By executing above command our image will be build successfully. We can see the list of all docker images in our system by below command:
+By executing above command our image will be build successfully. 
+
+We can see the list of all docker images in our system by below command:
 
 ```
 docker image ls
@@ -185,6 +187,13 @@ We can see a list like:
 | REPOSITORY                      | TAG     | IMAGE ID      | CREATED       | SIZE  |
 | :------------------------------ | :-------| :------------ | :------------ |:----- |
 | mydockerimage/docker-rails-app  |  latest | 0e4e616f7b52  | 1 minute ago  | 554 MB |
+
+
+We can delete any image by:
+
+```
+docker image rm -f mydockerimage/docker-rails-app:latest
+```
 
 ## Running Docker Image
 A Docker container is a runtime instance of a Docker image. Images can exist without containers, whereas a container needs to run an image to exist. 
