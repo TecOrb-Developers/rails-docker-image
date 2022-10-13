@@ -47,7 +47,7 @@ A Dockerfile is a text document that contains all the commands a user could call
 
 #### docker-rails-app/Dockerfile
 
-```http
+```
 # Here we add the the name of the stage ("base")
 FROM ruby:3.1.2-slim AS base
 
